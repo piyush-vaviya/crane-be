@@ -11,6 +11,7 @@ yarn-error.log
 # Code coverage
 coverage
 
+# Log and locks
 *.log
 package-lock.json
 yarn.lock
