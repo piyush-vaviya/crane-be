@@ -4,11 +4,14 @@ const htmlToText = require('html-to-text');
 
 const sendMail = async (options) => {
   // 1 Create Transportor
+  console.log('🚀 ~ sendMail ~ process.env.SENDGRID_API_KEY', process.env.SENDGRID_API_KEY);
   const transportor = nodeMailer.createTransport({
+    host: 'smtp.sendgrid.net',
+    port: 587,
     service: 'SendGrid',
     auth: {
-      user: process.env.Sendgrid_Username,
-      pass: process.env.Sendgrid_Password,
+      user: 'apikey',
+      pass: process.env.SENDGRID_API_KEY,
     },
   });
 
@@ -24,7 +27,7 @@ const sendMail = async (options) => {
   // 3 Define Mail Options
   const mailOptions = {
     from: process.env.Email_From,
-    // to: options.email,
+    to: options.email,
     subject: options.subject,
     // text: htmlToText.fromString(html),
     html,

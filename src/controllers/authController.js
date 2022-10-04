@@ -34,6 +34,10 @@ const creatsendToken = (user, statusCode, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+  const isEmailExist = await User.findOne({ email: req.body.email });
+
+  if (isEmailExist) return next(new AppError('Another account is using the same email.', 400));
+
   let user = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -48,6 +52,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   // 4 Send it to Users Email
   // const activationURL = `http://localhost:5000/api/v1/users/confirmMail/${activationToken}`;
+  console.log(activationToken);
   let activationURL;
   if (process.env.NODE_ENV === 'development')
     activationURL = `${req.protocol}://${req.get('host')}/api/v1/confirmMail/${activationToken}`;
@@ -101,7 +106,7 @@ exports.login = catchAsync(async (req, res, next) => {
   creatsendToken(user, 200, res);
 });
 
-exports.confirmMail = catchAsync(async (req, res) => {
+exports.confirmMail = catchAsync(async (req, res, next) => {
   // 1 Hash The Avtivation Link
   // console.log(req.params.activationLink);
 

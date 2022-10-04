@@ -1,11 +1,11 @@
 {
-  "name": "express-app-boilerplate",
+  "name": "crane-be",
   "version": "1.2.0",
   "description": "Create a Node.js app for building production-ready RESTful APIs using Express, by running one command",
   "bin": "bin/createNodejsApp.js",
   "main": "src/server.js",
   "repository": "https://github.com/UAhmadSoft/express-app-boilerplate.git",
-  "author": "Umad Ahmad <u.ahmadnode@gmail.com>",
+  "author": "Piyush Vaviya <piyush.vaviya27@gmail.com>",
   "license": "MIT",
   "engines": {
     "node": ">=12.0.0"
@@ -58,6 +58,7 @@
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.0.0",
     "express-rate-limit": "^5.0.0",
+    "he": "^1.2.0",
     "helmet": "^4.1.0",
     "hpp": "^0.2.3",
     "html-to-text": "^7.0.0",
