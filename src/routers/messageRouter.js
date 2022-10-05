@@ -10,22 +10,14 @@ router.get('/message', async (req, res) => {
   const query = { status: 'active' };
   const ids = [];
   // jyare frontend mathi sender and receiver ma _id mokalva mad tyare aa nichenu uncomment kri deje
-  // if (req?.query?.sender) ids.push(ObjectId(req.query.sender));
-  // if (req?.query?.receiver) ids.push(ObjectId(req.query.receiver));
-  // if (ids.length) {
-  //   query.$or = [
-  //     {
-  //       senderId: {
-  //         $in: ids,
-  //       },
-  //     },
-  //     {
-  //       receiverId: {
-  //         $in: ids,
-  //       },
-  //     },
-  //   ];
-  // }
+  if (req?.query?.senderId) ids.push(ObjectId(req.query.senderId));
+  if (req?.query?.receiverId) ids.push(ObjectId(req.query.receiverId));
+  if (ids.length) {
+    query.$and = [{ senderId: req.query.senderId }, { receiverId: req.query.receiverId }];
+  }
+  // { $or: [{ senderId: req.query.senderId }, { senderId: req.query.receiverId }] },
+  // { $or: [{ receiverId: req.query.senderId }, { receiverId: req.query.receiverId }] },
+
   const allMessageCollection = await Message.find(query).lean();
   // aanathi have jo yagnesh logged in user hoy and piyush ne view karto hoy to only eva messages
   // aavva joiye je kaa to yagnesh kaa to piyush e send krya hoy.
@@ -47,12 +39,12 @@ router.post('/message', async (req, res) => {
       return res.status(400).send({ message: 'Enter Message' });
     }
     // aya sender essa
-    const { message, localId } = req.body;
+    const { message, senderId, receiverId } = req.body;
 
     const decodedMessage = he.decode(message || '');
     console.log('🚀 ~ router.post ~ decodedMessage', decodedMessage);
 
-    const newMessage = await Message.create({ message: decodedMessage, localId });
+    const newMessage = await Message.create({ message: decodedMessage, senderId, receiverId });
 
     await new Promise((resolve) =>
       setTimeout(() => {
