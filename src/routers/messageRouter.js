@@ -17,7 +17,6 @@ router.get('/message', async (req, res) => {
   }
   // { $or: [{ senderId: req.query.senderId }, { senderId: req.query.receiverId }] },
   // { $or: [{ receiverId: req.query.senderId }, { receiverId: req.query.receiverId }] },
-
   const allMessageCollection = await Message.find(query).lean();
   // aanathi have jo yagnesh logged in user hoy and piyush ne view karto hoy to only eva messages
   // aavva joiye je kaa to yagnesh kaa to piyush e send krya hoy.
