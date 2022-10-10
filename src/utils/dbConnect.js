@@ -1,19 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const DBCluster = process.env.DATABASE;
-const DBLocal = process.env.DATABASE_LOCAL;
-console.log('🚀 ~ process.env.NODE_ENV', process.env.NODE_ENV);
+const DBCluster = process.env.DATABASE
+const DBLocal = process.env.DATABASE_LOCAL
+console.log('🚀 ~ process.env.NODE_ENV', process.env.NODE_ENV)
 
-let DB_URL = DBCluster;
+let DB_URL = DBCluster
 
-DB_URL = DB_URL.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+DB_URL = DB_URL.replace('<PASSWORD>', process.env.DATABASE_PASSWORD)
 
-if (process.argv[2] && process.argv[2] === 'dblocal') DB_URL = DBLocal;
+if (process.argv[2] && process.argv[2] === 'dblocal') DB_URL = DBLocal
 
-console.log('🚀 ~ DB_URL', DB_URL);
+console.log('🚀 ~ DB_URL', DB_URL)
 
 module.exports = () => {
-  console.log('connecting to DB...');
+  console.log('connecting to DB...')
   mongoose
     .connect(DB_URL, {
       useNewUrlParser: true,
@@ -23,7 +23,7 @@ module.exports = () => {
     })
     .then(() => console.log(`DB connection successful!`.rainbow.bold))
     .catch((err) => {
-      console.log(' 🚀 ~ DB Connection Failed !'.red.bold);
-      console.log(`err`, err);
-    });
-};
+      console.log(' 🚀 ~ DB Connection Failed !'.red.bold)
+      console.log(`err`, err)
+    })
+}

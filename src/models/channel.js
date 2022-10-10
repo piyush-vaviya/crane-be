@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const { ObjectId } = require('mongoose').Types
 
 const channelSchema = new mongoose.Schema({
   name: {
@@ -11,7 +12,7 @@ const channelSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
-  participants: Array,
+  participants: [ObjectId],
   isPublic: {
     type: Boolean,
   },
@@ -19,7 +20,11 @@ const channelSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-});
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
+})
 
-const Channel = mongoose.model('Channel', channelSchema);
-module.exports = Channel;
+const Channel = mongoose.model('Channel', channelSchema)
+module.exports = Channel

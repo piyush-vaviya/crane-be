@@ -72,6 +72,7 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "pm2": "^4.1.2",
+    "socket.io": "^4.5.2",
     "swagger-jsdoc": "^6.0.8",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.0.0",
@@ -94,7 +95,7 @@
     "lint-staged": "^10.0.7",
     "node-mocks-http": "^1.8.0",
     "nodemon": "^2.0.0",
-    "prettier": "^2.0.5",
+    "prettier": "2.7.1",
     "supertest": "^6.0.1"
   }
 }

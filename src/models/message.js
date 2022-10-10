@@ -1,17 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const { ObjectId } = require('mongoose').Types
 
 const messageSchema = new mongoose.Schema({
   channelId: {
-    type: String,
-    default: '',
+    type: ObjectId,
   },
   senderId: {
-    type: String,
-    default: '',
+    type: ObjectId,
   },
   receiverId: {
-    type: String,
-    default: '',
+    type: ObjectId,
   },
   localId: {
     type: String,
@@ -28,7 +26,7 @@ const messageSchema = new mongoose.Schema({
     type: String,
     default: 'active',
   },
-});
+})
 
-const Message = mongoose.model('Message', messageSchema);
-module.exports = Message;
+const Message = mongoose.model('Message', messageSchema)
+module.exports = Message
