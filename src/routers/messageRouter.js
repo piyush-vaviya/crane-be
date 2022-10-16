@@ -50,11 +50,6 @@ router.get('/message', async (req, res) => {
 router.post('/message', async (req, res) => {
   try {
     if (!req.body?.message?.trim()) {
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          resolve()
-        }, 1500)
-      )
       return res.status(400).send({ message: 'Enter Message' })
     }
     const { message, senderId, receiverId, channelId, localId } = req.body
@@ -70,11 +65,6 @@ router.post('/message', async (req, res) => {
     const newMessage = await new Message(msgData)
     await newMessage.save()
 
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve()
-      }, 1500)
-    )
     io.emit('message', { message: newMessage, isChannelMessage, localId, action: 'create' })
     res.status(201).send({
       success: 'message send',
@@ -99,12 +89,6 @@ router.put('/message', async (req, res) => {
       message: `No message found`,
     })
 
-  await new Promise((resolve) =>
-    setTimeout(() => {
-      resolve()
-    }, 1500)
-  )
-
   existingMessage.message = decodedMessage
   await existingMessage.save()
 
@@ -127,11 +111,7 @@ router.delete('/message', async (req, res) => {
       status: 'failed',
       message: `No message found`,
     })
-  await new Promise((resolve) =>
-    setTimeout(() => {
-      resolve()
-    }, 1500)
-  )
+
   existingMessage.status = 'deleted'
   await existingMessage.save()
 
