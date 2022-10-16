@@ -70,6 +70,8 @@ app.use('/api/v1', indexRoutes)
 app.use('/api/v1', messageRouter)
 app.use('/api/v1', channelRoutes)
 
+app.get('/', (req, res) => res.send({ success: 'Everything is working fine!' }))
+
 // handling all (get,post,update,delete.....) unhandled routes
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on the server`, 404))
