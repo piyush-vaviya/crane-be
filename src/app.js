@@ -20,7 +20,11 @@ const globalErrorHandler = require('./middlewares/globalErrorHandler')
 const AppError = require('./utils/appError')
 const http = require('http')
 const server = http.createServer(app)
-const io = new Server(server, { cors: '*' })
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  },
+})
 
 global.io = io
 
