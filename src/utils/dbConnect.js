@@ -14,7 +14,7 @@ console.log('🚀 ~ DB_URL', DB_URL)
 
 module.exports = () => {
   console.log('connecting to DB...')
-  return new Promise(() =>
+  return new Promise((resolve, reject) =>
     mongoose
       .connect(DB_URL, {
         useNewUrlParser: true,
