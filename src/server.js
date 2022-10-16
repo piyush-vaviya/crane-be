@@ -10,7 +10,6 @@ process.on('uncaughtException', (error) => {
 
 console.log()
 const { server, app } = require('./app')
-const buckets = require('./utils/buckets')
 
 // database connection
 DBConnect().then(() => {
