@@ -14,16 +14,20 @@ console.log('🚀 ~ DB_URL', DB_URL)
 
 module.exports = () => {
   console.log('connecting to DB...')
-  mongoose
-    .connect(DB_URL, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-      useUnifiedTopology: true,
-    })
-    .then(() => console.log(`DB connection successful!`.rainbow.bold))
-    .catch((err) => {
-      console.log(' 🚀 ~ DB Connection Failed !'.red.bold)
-      console.log(`err`, err)
-    })
+  return new Promise((resolve, reject) =>
+    mongoose
+      .connect(DB_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        console.log(`DB connection successful!`.rainbow.bold)
+        resolve()
+      })
+      .catch((err) => {
+        console.log(' 🚀 ~ DB Connection Failed !'.red.bold)
+        console.log(`err`, err)
+        reject(err)
+      })
+  )
 }

@@ -13,13 +13,13 @@ const { server, app } = require('./app')
 const buckets = require('./utils/buckets')
 
 // database connection
-DBConnect()
+DBConnect().then(() => {
+  // server
+  const port = process.env.PORT || 7000
 
-// server
-const port = process.env.PORT || 7000
-
-server.listen(port, () => {
-  console.log(`App is running on port ${port}`.yellow.bold)
+  server.listen(port, () => {
+    console.log(`App is running on port ${port}`.yellow.bold)
+  })
 })
 
 // handle Globally  the unhandled Rejection Error which is  outside the express
