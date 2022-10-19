@@ -17,7 +17,10 @@ router.post('/channel', async (req, res, next) => {
   try {
     if (!req.body?.name) return next(new AppError('Enter a channel name', 400))
 
+
     const { name, description, isPublic, participant } = req.body
+
+    console.log(participant);
 
     const newChannel = await Channel.create({ name, description, isPublic })
 
