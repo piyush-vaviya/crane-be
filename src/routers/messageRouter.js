@@ -5,13 +5,10 @@ const router = express.Router()
 const he = require('he')
 
 router.get('/message', async (req, res) => {
-  // const senderUsername = req?.query?.sender;
-  // const receiverUsername = req?.query?.receiver;
+
   const query = { status: 'active' }
   const ids = []
-  // jyare frontend mathi sender and receiver ma _id mokalva mad tyare aa nichenu uncomment kri deje
 
-  console.log('🚀 ~ router.get ~ req?.query', req?.query)
   if (req?.query?.channelId.length) ids.push(ObjectId(req.query.channelId))
 
   if (req?.query?.senderId) ids.push(ObjectId(req.query.senderId))

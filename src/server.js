@@ -8,7 +8,6 @@ process.on('uncaughtException', (error) => {
   process.exit(1) //  immediately exists all from all the requests
 })
 
-console.log()
 const { server, app } = require('./app')
 
 // database connection
